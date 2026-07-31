@@ -23,7 +23,8 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 
 ### ER Diagram:
 *Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+<img width="822" height="848" alt="image" src="https://github.com/user-attachments/assets/ed3fc78c-d011-4075-a906-9cfb78ffc6eb" />
+
 
 ### Entities and Attributes
 
@@ -65,32 +66,40 @@ The Central Library wants to manage book lending and cultural events.
 
 ### ER Diagram:
 *Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
+<img width="1305" height="692" alt="image" src="https://github.com/user-attachments/assets/6e90beb3-2112-4dbe-88dd-3b5aee1d4234" />
+
 
 ### Entities and Attributes
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+| Entity  | Attributes (PK, FK)                                   | Notes                        |
+|---------|--------------------------------------------------------|------------------------------|
+| Member  | MemberID (PK), Name, Phone, Email                      | Library member               |
+| Book    | BookID (PK), Title, Author, Category                   | Books available in library   |
+| Loan    | LoanID (PK), LoanDate, ReturnDate, MemberID (FK), BookID (FK) | Tracks borrowed books |
+| Event   | EventID (PK), EventName, EventDate                     | Library cultural events      |
+| Speaker | SpeakerID (PK), SpeakerName                            | Event speakers/authors       |
+| Room    | RoomID (PK), RoomName, Capacity                        | Rooms for events and study   |
+| Fine    | FineID (PK), Amount, LoanID (FK), MemberID (FK)        | Overdue fine details         |
 
 ### Relationships and Constraints
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+| Relationship           | Cardinality   | Participation | Notes                                    |
+|------------------------|---------------|---------------|------------------------------------------|
+| Member borrows Book    | M:N (via Loan)| Total         | Loan stores loan and return dates        |
+| Member registers Event | M:N           | Partial       | Members may register for multiple events |
+| Event has Speaker      | M:N           | Total         | Each event has one or more speakers      |
+| Event uses Room        | M:1           | Total         | One room is assigned per event           |
+| Loan generates Fine    | 1:0..1        | Partial       | Fine generated only for overdue loans    |
+| Member pays Fine       | 1:M           | Partial       | Member may have multiple fines           |
 
 ### Assumptions
-- 
-- 
-- 
-
----
+- A member can borrow multiple books.
+- A book can be borrowed multiple times but only by one member at a time.
+- Each loan records both loan date and return date.
+- Overdue loans generate fines.
+- Members can register for multiple events.
+- An event can have one or more speakers.
+- One room is allocated for one event at a given time.
 
 # Scenario C: Restaurant Table Reservation & Ordering
 
