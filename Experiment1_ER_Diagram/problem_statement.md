@@ -27,29 +27,41 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 
 
 ### Entities and Attributes
+### Entities and Attributes
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+| Entity  | Attributes (PK, FK)                                            | Notes                      |
+|---------|------------------------------------------------------------------|----------------------------|
+| Member  | MemberID (PK), Name, Phone, Email                               | Library member             |
+| Book    | BookID (PK), Title, Author, Category                            | Books in the library       |
+| Loan    | LoanID (PK), LoanDate, ReturnDate, MemberID (FK), BookID (FK)   | Tracks borrowed books      |
+| Event   | EventID (PK), EventName, EventDate                              | Library events             |
+| Speaker | SpeakerID (PK), SpeakerName                                     | Event speaker/author       |
+| Room    | RoomID (PK), RoomName, Capacity                                 | Event and study rooms      |
+| Fine    | FineID (PK), Amount, LoanID (FK), MemberID (FK)                 | Overdue fine information   |
+
 
 ### Relationships and Constraints
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+### Relationships and Constraints
+
+| Relationship            | Cardinality | Participation | Notes                                   |
+|-------------------------|-------------|---------------|-----------------------------------------|
+| Member borrows Book     | M:N         | Total         | Implemented through Loan                |
+| Member registers Event  | M:N         | Partial       | Members may join multiple events        |
+| Event has Speaker       | M:N         | Total         | Each event has one or more speakers     |
+| Event uses Room         | M:1         | Total         | One room is assigned per event          |
+| Loan generates Fine     | 1:0..1      | Partial       | Fine only for overdue returns           |
+| Member pays Fine        | 1:M         | Partial       | A member may have multiple fines        |
 
 ### Assumptions
-- 
-- 
-- 
 
----
+- A member can borrow multiple books.
+- A book can be borrowed by only one member at a time.
+- A loan records both loan and return dates.
+- A fine is generated only for overdue returns.
+- Members can register for multiple events.
+- An event may have multiple speakers.
+- Each event is conducted in one room.
 
 # Scenario B: City Library Event & Book Lending System
 
