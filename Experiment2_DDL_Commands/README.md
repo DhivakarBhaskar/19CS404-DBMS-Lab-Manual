@@ -103,22 +103,28 @@ CREATE TABLE Table_Name (
 );
 ```
 
+<img width="1295" height="216" alt="image" src="https://github.com/user-attachments/assets/ebc245d2-b592-43b6-9eab-53221702cdc4" />
+
 **Question 1**
 
-![image](https://github.com/user-attachments/assets/219bf5e2-9208-4c6f-8229-e1a9c0b2d545)
+<img width="1900" height="462" alt="image" src="https://github.com/user-attachments/assets/16a190b2-2add-4da6-ad66-4437c73029c9" />
 
-```sql
-CREATE TABLE Orders(
- OrderID INTEGER PRIMARY KEY,
- OrderDate DATE NOT NULL,
- CustomerID INTEGER,
- FOREIGN KEY(CustomerID) REFERENCES CustomerS(CustomerID)
- );
+
+```
+CREATE TABLE Invoices(
+   InvoiceID INTEGER PRIMARY KEY,
+   InvoiceDate DATE,
+   Amount REAL CHECK( Amount > 0),
+   DueDate DATE CHECK(DueDate > InvoiceDate),
+   OrderID INTEGER,
+   FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+  );
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/6709e358-ded9-4297-b80c-2dd36c2d62dc)
+<img width="1220" height="358" alt="image" src="https://github.com/user-attachments/assets/a5176f13-5dec-42f0-b025-95ad0ccd7c4b" />
+
 
 **Question 2**
 
