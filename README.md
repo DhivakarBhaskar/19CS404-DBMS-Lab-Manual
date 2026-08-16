@@ -101,6 +101,7 @@ CREATE TABLE Table_Name (
   col_name2 data_type,
   col_name3 data_type DEFAULT 'default_value'
 );
+```
 <img width="1900" height="462" alt="image" src="https://github.com/user-attachments/assets/16a190b2-2add-4da6-ad66-4437c73029c9" />
 **Question 1**
 
